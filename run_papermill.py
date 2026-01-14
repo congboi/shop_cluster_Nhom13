@@ -45,16 +45,16 @@ pm.execute_notebook(
         RULES_OUTPUT_PATH="data/processed/rules_apriori_filtered.csv",
 
         # Tham số Apriori
-        MIN_SUPPORT=0.01,
-        MAX_LEN=3,
+        MIN_SUPPORT=0.03,
+        MAX_LEN=4,
 
         # Generate rules
         METRIC="lift",
         MIN_THRESHOLD=1.0,
 
         # Lọc luật
-        FILTER_MIN_SUPPORT=0.01,
-        FILTER_MIN_CONF=0.3,
+        FILTER_MIN_SUPPORT=0.02,
+        FILTER_MIN_CONF=0.4,
         FILTER_MIN_LIFT=1.2,
         FILTER_MAX_ANTECEDENTS=2,
         FILTER_MAX_CONSEQUENTS=1,
@@ -81,14 +81,14 @@ pm.execute_notebook(
         BASKET_BOOL_PATH="data/processed/basket_bool.parquet",
         RULES_OUTPUT_PATH="data/processed/rules_fpgrowth_filtered.csv",
 
-        MIN_SUPPORT=0.01,
-        MAX_LEN=3,
+        MIN_SUPPORT=0.03,
+        MAX_LEN=4,
 
         METRIC="lift",
         MIN_THRESHOLD=1.0,
 
-        FILTER_MIN_SUPPORT=0.01,
-        FILTER_MIN_CONF=0.3,
+        FILTER_MIN_SUPPORT=0.02,
+        FILTER_MIN_CONF=0.4,
         FILTER_MIN_LIFT=1.2,
         FILTER_MAX_ANTECEDENTS=2,
         FILTER_MAX_CONSEQUENTS=1,
@@ -111,8 +111,8 @@ pm.execute_notebook(
     parameters=dict(
         BASKET_BOOL_PATH="data/processed/basket_bool.parquet",
 
-        MIN_SUPPORT=0.01,
-        MAX_LEN=3,
+        MIN_SUPPORT=0.03,
+        MAX_LEN=4,
 
         METRIC="lift",
         MIN_THRESHOLD=1.0,
@@ -129,7 +129,7 @@ pm.execute_notebook(
         CLEANED_DATA_PATH="data/processed/cleaned_uk_data.csv",
         RULES_INPUT_PATH="data/processed/rules_apriori_filtered.csv",
 
-        TOP_K_RULES=200,
+        TOP_K_RULES=30,
         SORT_RULES_BY="lift",
         WEIGHTING="lift",
         MIN_ANTECEDENT_LEN=1,
@@ -150,4 +150,29 @@ pm.execute_notebook(
     kernel_name="python3",
 )
 
+# Trong run_papermill.py, sửa phần notebook 7:
+
+pm.execute_notebook(
+    "notebooks/cluster_profiling_and_interpretation.ipynb",
+    "notebooks/runs/cluster_profiling_and_interpretation_run.ipynb",
+    parameters=dict(
+        CLUSTER_RESULT_PATH="data/processed/customer_clusters_from_rules.csv",
+        RULES_INPUT_PATH="data/processed/rules_fpgrowth_filtered.csv",
+        CLEANED_DATA_PATH="data/processed/cleaned_uk_data.csv",
+        
+        # Simple parameters only
+        TOP_RULES_PER_CLUSTER=10,
+        TOP_PRODUCTS_PER_CLUSTER=15,
+        MIN_RULE_CONFIDENCE=0.3,
+        
+        PROFILING_OUTPUT_PATH="data/processed/cluster_profiles_detailed.csv",
+        MARKETING_RECOMMENDATIONS_PATH="data/processed/marketing_recommendations.csv",
+        
+        # Set all plots to False for batch run
+        PLOT_RFM_COMPARISON=False,
+        PLOT_PRODUCT_HEATMAP=False,
+        PLOT_CLUSTER_RADAR=False,
+    ),
+    kernel_name="python3",
+)
 print("Đã chạy xong pipeline")

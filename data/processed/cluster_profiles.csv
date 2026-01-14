@@ -1,0 +1,3 @@
+cluster,n_customers,Recency,Frequency,Monetary,customer_percentage,english_name,vietnamese_name,persona_description
+0,3623,94.53049958597848,3.854264421749931,1646.2032415125589,0.9239989798520786,At-Risk Inactive Customers,Khách hàng ngủ đông có nguy cơ mất,Inactive customers
+1,298,63.671140939597315,13.614093959731544,10271.905167785235,0.07600102014792146,Frequent Low-Spend Customers,Khách hàng thường xuyên chi tiêu thấp,Frequent buyers with low value

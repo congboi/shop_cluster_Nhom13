@@ -1,0 +1,6 @@
+cluster,strategy_type,recommendation,rationale,timing,expected_kpi
+0.0,Reactivation Campaign,"Send ""We miss you"" email with 20% discount",Customers inactive for 94 days,Immediate,15% reactivation rate
+0.0,VIP Treatment,Offer exclusive early access,High-value customers (avg spend £1646),Next product launch,Increase loyalty by 25%
+0.0,Targeted Promotion,Create personalized offers for Khách hàng ngủ đông có nguy cơ mất,Segment identified through clustering analysis,Next 30 days,Increase conversion by 10%
+1.0,VIP Treatment,Offer exclusive early access,High-value customers (avg spend £10272),Next product launch,Increase loyalty by 25%
+1.0,Targeted Promotion,Create personalized offers for Khách hàng thường xuyên chi tiêu thấp,Segment identified through clustering analysis,Next 30 days,Increase conversion by 10%
